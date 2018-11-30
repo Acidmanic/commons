@@ -16,6 +16,9 @@
  */
 package com.acidmanic.parse;
 
+import com.acidmanic.utilities.statemachines.StateMachine;
+import com.acidmanic.utilities.statemachines.Transition;
+
 /**
  *
  * @author Mani Moayedi (acidmanic.moayedi@gmail.com)
@@ -24,6 +27,10 @@ public class QuotationParser {
 
     public boolean isWrappedIn(String value, String tag) {
         return (value.startsWith(tag) && value.endsWith(tag));
+    }
+
+    public boolean isWrappedIn(String value, String startTag, String endTag) {
+        return (value.startsWith(startTag) && value.endsWith(endTag));
     }
 
     public boolean isQuotedValues(String part) {
