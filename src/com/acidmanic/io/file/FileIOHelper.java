@@ -20,23 +20,25 @@ import java.util.logging.Logger;
  * @author Mani Moayedi (acidmanic.moayedi@gmail.com)
  */
 public class FileIOHelper {
-    
-    
-    public void tryWriteAll(String filePath,String content){
-        File f = new File(filePath);
-        if (f.exists()) {
+
+    public void tryWriteAll(String filePath, String content) {
+        tryWriteAll(new File(filePath), content);
+    }
+
+    public void tryWriteAll(File file, String content) {
+        if (file.exists()) {
             try {
-                f.delete();
+                file.delete();
             } catch (Exception e) {
             }
         }
         try {
-            Files.write(Paths.get(filePath),
+            Files.write(file.toPath(),
                     content.getBytes(),
                     StandardOpenOption.CREATE);
         } catch (Exception e) {
         }
-        
+
     }
 
     public List<String> tryReadAllLines(File file) {
@@ -49,6 +51,16 @@ public class FileIOHelper {
 
     public List<String> tryReadAllLines(String path) {
         return tryReadAllLines(new File(path));
+    }
+
+    public String tryReadAllText(File file) {
+        try {
+            return new String(
+                    Files.readAllBytes(file.toPath())
+            );
+        } catch (Exception e) {
+        }
+        return null;
     }
 
     public String tryReadAllText(String path) {

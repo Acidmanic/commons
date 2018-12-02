@@ -16,9 +16,6 @@
  */
 package com.acidmanic.parse;
 
-import com.acidmanic.utilities.statemachines.StateMachine;
-import com.acidmanic.utilities.statemachines.Transition;
-
 /**
  *
  * @author Mani Moayedi (acidmanic.moayedi@gmail.com)

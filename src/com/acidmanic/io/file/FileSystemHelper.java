@@ -9,7 +9,6 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.CopyOption;
 import java.nio.file.FileVisitResult;
-import java.nio.file.FileVisitor;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -24,27 +23,6 @@ import java.util.List;
  */
 public class FileSystemHelper {
 
-    private abstract class MileVisitor implements FileVisitor<Path> {
-
-        protected Path currentDirectory;
-
-        @Override
-        public FileVisitResult preVisitDirectory(Path dir, BasicFileAttributes attrs) throws IOException {
-            this.currentDirectory = dir;
-            return FileVisitResult.CONTINUE;
-        }
-
-        @Override
-        public FileVisitResult visitFileFailed(Path file, IOException exc) throws IOException {
-            return FileVisitResult.CONTINUE;
-        }
-
-        @Override
-        public FileVisitResult postVisitDirectory(Path dir, IOException exc) throws IOException {
-            return FileVisitResult.CONTINUE;
-        }
-
-    }
 
     public FileSystemHelper() {
     }
@@ -85,7 +63,7 @@ public class FileSystemHelper {
     }
 
     public void copyDirectory(Path src, Path dst, CopyOption copyOption) throws IOException {
-        Files.walkFileTree(src, new MileVisitor() {
+        Files.walkFileTree(src, new SimpleFileVisitor() {
             @Override
             public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) throws IOException {
                 Path dstDirectory = dst.resolve(src.relativize(this.currentDirectory));
