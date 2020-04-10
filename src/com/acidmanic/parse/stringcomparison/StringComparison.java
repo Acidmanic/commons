@@ -13,6 +13,7 @@ public interface StringComparison {
     
     public static final int COMPARE_CASE_SENSITIVE = 0;
     public static final int COMPARE_CASE_INSENSITIVE = 1;
+    public static final int COMPARE_REGEX_MATCH = 2;
     
     
     boolean areEqual(String value1, String value2);

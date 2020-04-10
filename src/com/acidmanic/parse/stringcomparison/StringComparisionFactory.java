@@ -5,8 +5,7 @@
  */
 package com.acidmanic.parse.stringcomparison;
 
-import static com.acidmanic.parse.stringcomparison.StringComparison.COMPARE_CASE_INSENSITIVE;
-import static com.acidmanic.parse.stringcomparison.StringComparison.COMPARE_CASE_SENSITIVE;
+import static com.acidmanic.parse.stringcomparison.StringComparison.*;
 import java.util.HashMap;
 
 /**
@@ -21,6 +20,7 @@ public class StringComparisionFactory {
         HashMap<Integer, StringComparison> ret = new HashMap<>();
         ret.put(COMPARE_CASE_SENSITIVE, new CaseSensitiveCompare());
         ret.put(COMPARE_CASE_INSENSITIVE, new CaseInsensitiveComparison());
+        ret.put(COMPARE_REGEX_MATCH, new RegStringExComparison());
         return ret;
     }
 
